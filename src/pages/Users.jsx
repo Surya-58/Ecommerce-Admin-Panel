@@ -18,10 +18,33 @@ const Users = () => {
   const [message, setMessage] = useState("")
   const [editId, setEditId] = useState(null)
   const [search, setSearch] = useState("")
+  const [filterRole, setFilterRole] = useState("All")
+  const [currentPage, setCurrentPage] = useState(1)
+  const usersPerPage = 5;
 
-  const filteredSearch = users.filter((user) =>
-    user.name.toLowerCase().includes(search.toLowerCase())
+
+  const filteredUsers = users.filter((user) =>{
+    const matchSearch = user.name
+      .toLowerCase()
+      .includes(search.toLowerCase())
+
+      const matchRole = filterRole === "All" || user.role === filterRole;
+      return matchSearch & matchRole
+  })
+
+  const indexOfLastUser = currentPage * usersPerPage
+  const indexOfFirstUser = currentPage - usersPerPage
+
+  const currentUsers = filteredUsers.slice(
+    indexOfFirstUser,
+    indexOfLastUser
   )
+
+  const totalPages = Math.ceil(
+    filteredUsers.length / usersPerPage
+  )
+
+  useEffect
 
   const handleGetUsers = async() => {
     try {
@@ -104,8 +127,8 @@ const Users = () => {
   }
 
   useEffect(() => {
-    handleGetUsers()
-  },[])
+    handleGetUsers(1)
+  },[search, filterRole])
 
   return (
     <div className='page'>
@@ -127,6 +150,18 @@ const Users = () => {
         message={message}
         />
 
+        <label className="label">Filter by Role</label>
+          <select className="input"
+          value={filterRole}
+          onChange={(e)=>setFilterRole(e.target.value)}>
+            <option value="All">All</option>
+            <option value="Customer">Customer</option>
+            <option value="Admin">Admin</option>
+            <option value="Vendor">Vendor</option>
+          </select>
+          <br/>
+        
+
         <label className="label">Search User</label>
         <br/>
 
@@ -139,10 +174,27 @@ const Users = () => {
         <br />
 
         <UserTable 
-        users={filteredSearch}
+        users={currentUsers}
         handleEdit={handleEdit}
         handleDelete={handleDelete}
         />
+
+        <div className="pagination">
+          <button onClick={() => setCurrentPage(currentPage - 1)}
+          disabled={currentPage === 1} >Previous</button>
+          {Array.from({length : totalPages}, (_, index) => (
+          <button
+          key={index}
+          className={currentPage === index + 1 ? "active-page" : ""}
+          onClick={()=>setCurrentPage(index + 1)}>
+            {index + 1}
+          </button>
+          
+        ))}
+        <button onClick={() => setCurrentPage(currentPage + 1)}
+          disabled={currentPage === totalPages}>Next</button>
+          
+        </div>
       </div>
 
     </div>

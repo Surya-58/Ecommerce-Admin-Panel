@@ -193,11 +193,18 @@
       "role": "Customer"
     },
     {
-      "id": "5",
-      "name": "Anitha",
-      "email": "anitha@gmail.com",
-      "phone": "9123409876",
-      "role": "Customer"
+      "name": "surya",
+      "email": "surya123@gmail.com",
+      "phone": "12345",
+      "role": "Admin",
+      "id": "NN_kFdYJYW4"
+    },
+    {
+      "name": "rock",
+      "email": "rock123@gmail.com",
+      "phone": "1234657",
+      "role": "Customer",
+      "id": "rW3cY7eU8ys"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
