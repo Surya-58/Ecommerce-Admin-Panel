@@ -13,6 +13,10 @@ const OrderForm = ({
   setPrice,
   total,
   handleAddOrder,
+  status,
+  setStatus,
+  handleUpdateOrder,
+  editId,
 }) => {
   return (
     <div>
@@ -83,10 +87,25 @@ const OrderForm = ({
        readOnly />
        <br />
 
+       <label  className="label"></label>
+       <br />
+
+       <select 
+       className="input"
+       value={status}
+       onChange={(e) => setStatus(e.target.value)}
+       >
+        <option value="Pending">Pending</option>
+        <option value="Delivered">Delivered</option>
+        <option value="Cancelled">Cancelled</option>
+       </select>
+       <br />
+
        <button 
        className="btn-primary"
-       onClick={handleAddOrder}
-       >Add Order</button>
+       onClick={editId ? handleUpdateOrder : handleAddOrder}
+       >{editId ? "Update Order" : "Add Order"}
+       </button>
     </div>
   );
 };

@@ -209,13 +209,13 @@
   ],
   "orders": [
     {
-      "id": "1",
       "customer": "Surya",
-      "product": "Rice",
-      "quantity": 2,
-      "price": 60,
-      "total": 120,
-      "status": "Pending"
+      "product": "Tata Salt",
+      "quantity": "4",
+      "price": 28,
+      "total": 112,
+      "status": "Pending",
+      "id": "1"
     },
     {
       "id": "2",
@@ -227,13 +227,13 @@
       "status": "Delivered"
     },
     {
-      "customer": "Surya",
-      "product": "Aashirvaad Atta",
-      "quantity": "2",
-      "price": "310",
-      "total": 620,
-      "status": "Pending",
-      "id": "BOaePKsJlR8"
+      "customer": "Rahul",
+      "product": "Amul Milk",
+      "quantity": "4",
+      "price": 32,
+      "total": 128,
+      "status": "Delivered",
+      "id": "thi6qpB0Xig"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
