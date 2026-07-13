@@ -23,6 +23,8 @@ const ProductForm = ({
     setCategory,
     stock,
     setStock,
+    feautured,
+    setFeatured,
     
 }) => {
   return (
@@ -105,6 +107,14 @@ const ProductForm = ({
         onChange={(e) => setImage(e.target.value)}
         placeholder='Enter image URL' />
         <br />
+
+        <label className="label">
+          <input type='checkbox'
+          checked={feautured}
+          onChange={(e)=>setFeatured(e.target.checked)}
+          />Feautured Product</label>
+          <br />
+          <br />
         <button className="btn-primary" onClick={editId ? handleUpdate : handleAddProduct}>{editId ? "Update product" : "Add product"}</button>
       
         <p className="message">{message}</p>

@@ -25,6 +25,7 @@ const Products = () => {
   const [image, setImage] = useState("")
   const [category, setCategory] = useState("")
   const [stock, setStock] = useState("")
+  const [feautured, setFeatured] = useState(false)
 
   const filteredProducts = products.filter((product) => {
     const matchSearch = product.name
@@ -78,6 +79,7 @@ const Products = () => {
         category,
         image,
         stock,
+        feautured,
       };
       const data = await updateProduct(editId, product);
       console.log(data);
@@ -93,6 +95,7 @@ const Products = () => {
       setImage("")
       setCategory("")
       setStock("")
+      setFeatured(false)
     } catch (error) {
       console.log(error);
     }
@@ -107,6 +110,7 @@ const Products = () => {
     setImage(product.image);
     setCategory(product.category);
     setStock(product.stock)
+    setFeatured(product.feautured)
   };
 
   const handleGetProducts = async () => {
@@ -129,6 +133,7 @@ const Products = () => {
         category,
         image,
         stock,
+        feautured,
       };
 
       const data = await addProduct(product);
@@ -143,6 +148,7 @@ const Products = () => {
       setImage("")
       setCategory("")
       setStock("")
+      setFeatured(false)
     } catch (error) {
       console.log(error);
     }
@@ -178,6 +184,8 @@ const Products = () => {
           setCategory={setCategory}
           stock={stock}
           setStock={setStock}
+          feautured={feautured}
+          setFeatured={setFeatured}
 
         />
         <label className="label">Search Product</label>
